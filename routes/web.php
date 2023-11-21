@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 // csv업로드
 // Route::get('/csv_upload', [App\Http\Controllers\subwayController::class, 'csv_upload'])->name('csv_upload');
 
+Route::get('/', [App\Http\Controllers\subwayController::class, 'index'])->name('index');
 
 Route::get('/subway/{station_name}', [App\Http\Controllers\subwayController::class, 'subway'])->name('subway');
 

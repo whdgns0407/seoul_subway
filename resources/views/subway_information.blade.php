@@ -95,10 +95,10 @@
                             givenDate.setSeconds(givenDate.getSeconds() + barvlDt);                            
 
                             remain_seconds = Math.floor((givenDate - currentdate) / 1000);
-                            if (remain_seconds <= 90) {
+                            if (remain_seconds <= 20) {
+                                barvl_message = "진입중";
+                            } else if(remain_seconds <= 60) {
                                 barvl_message = "곧 도착";
-                            } else if(remain_seconds <= 20) {
-                                barvl_message = "도착";
                             } else {
                                 minutes = Math.floor(remain_seconds / 60);
                                 seconds = remain_seconds % 60;

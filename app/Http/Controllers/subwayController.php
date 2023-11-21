@@ -13,6 +13,7 @@ use League\Csv\Reader;
 
 class subwayController extends Controller
 {
+
     public function csv_upload()
     {
 
@@ -36,6 +37,11 @@ class subwayController extends Controller
 
         return response()->json(['message' => 'CSV 데이터가 성공적으로 저장되었습니다.']);
     }
+
+    public function index(){
+        return 00;
+    }
+
 
     public function subway(Request $request, $station_name)
     {
