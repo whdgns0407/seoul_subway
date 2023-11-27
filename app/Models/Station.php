@@ -9,10 +9,12 @@ class Station extends Model
 {
     use HasFactory;
 
-
     protected $fillable = [
         'id',
         'station_name',
         'line_id',
+        'statn_id',
+        'created_at',
+        'updated_at'
     ];
 }

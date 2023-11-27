@@ -28,27 +28,33 @@ class subwayController extends Controller
 
         // 헤더 제외한 데이터를 반복하면서 저장
         foreach (array_slice($csvData, 1) as $row) {
-            Station::create([
-                'line_id' => $row[0], // CSV 파일의 첫 번째 열
-                'station_name' => $row[2], // CSV 파일의 두 번째 열
-                // 추가 필드가 있다면 계속해서 추가
-            ]);
+            try {
+                Station::create([
+                    'station_name' => $row[2],
+                    'line_id' => $row[0], // CSV 파일의 첫 번째 열
+                    'statn_id' => $row[1], // CSV 파일의 두 번째 열
+                ]);
+            } catch (\Exception $e) {
+                dd($e->getMessage()); // 에러 메시지 출력
+            }
         }
 
         return response()->json(['message' => 'CSV 데이터가 성공적으로 저장되었습니다.']);
     }
 
-    public function index(){
+    public function index()
+    {
         return 00;
     }
 
 
     public function subway(Request $request, $station_name)
     {
+
         $station_sqls = Station::join('linecodes', 'stations.line_id', '=', 'linecodes.line_code')
             ->where('stations.station_name', $station_name)->get();
 
-        
+
         if ($station_sqls->isEmpty()) {
             abort(404);
         }
