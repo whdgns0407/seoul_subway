@@ -6,11 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-    <!-- 구글애드센스 -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6095871392041989"
         crossorigin="anonymous"></script>
 
-        
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-9ZYM97R27D"></script>
     <script>
@@ -52,7 +50,6 @@
                 <thead>
                     <tr>
                         <th scope="col" colspan="4" style="text-align: center">
-
                             {{ $station_sql->line_name }}
                             @if ($station_sql->line_id != 1002)
                                 (상행)
@@ -60,7 +57,6 @@
                                 (외선)
                             @endif
                         </th>
-
                     </tr>
                     <tr>
                         <th scope="col" style="text-align:center; vertical-align:middle; width:30%;">행선지</th>
@@ -70,6 +66,7 @@
                     </tr>
                 </thead>
                 <tbody>
+
                 </tbody>
             </table>
         </div>
@@ -96,20 +93,21 @@
                     </tr>
                 </thead>
                 <tbody>
+
                 </tbody>
             </table>
         </div>
-        @if ($index == 0)
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6095871392041989"
-                crossorigin="anonymous"></script>
-            <!-- 지하철 상세정보 -->
-            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6095871392041989"
-                data-ad-slot="4284243830" data-ad-format="auto" data-full-width-responsive="true"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        @endif
     @endforeach
+    <div style="display: flex; justify-content: center;">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6095871392041989"
+            crossorigin="anonymous"></script>
+        
+        <ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px"
+            data-ad-client="ca-pub-6095871392041989" data-ad-slot="4284243830"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
 
     <script>
         var url = "/subway_ajax/{{ $station_name }}";
@@ -161,13 +159,6 @@
 
             // 창 크기 변경 시 폰트 크기 조절
             $(window).resize(adjustFontSize);
-
-
-
-
-
-
-
 
             function subway_ajax() {
                 $.ajax({
@@ -258,12 +249,10 @@
 
                                 remain_seconds = Math.floor((givenDate - currentdate) / 1000);
 
-                                if (remain_seconds <= 0) {
+                                if (remain_seconds <= 10) {
                                     barvl_message = "도착";
-                                } else if (remain_seconds <= 20) {
+                                } else if (remain_seconds <= 25) {
                                     barvl_message = "진입중";
-                                } else if (remain_seconds <= 40) {
-                                    barvl_message = "곧도착";
                                 } else {
                                     minutes = Math.floor(remain_seconds / 60);
                                     seconds = remain_seconds % 60;
@@ -293,8 +282,6 @@
                                 .append(row);
                         }
                         adjustFontSize();
-
-                        console.log(count);
                     }
                 });
             }

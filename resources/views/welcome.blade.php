@@ -10,7 +10,6 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6095871392041989"
         crossorigin="anonymous"></script>
 
-        
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-9ZYM97R27D"></script>
     <script>
@@ -73,14 +72,6 @@
                 </tbody>
             </table>
             @if ($index == 0)
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6095871392041989"
-                    crossorigin="anonymous"></script>
-                <!-- 지하철 상세정보 -->
-                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6095871392041989"
-                    data-ad-slot="4284243830" data-ad-format="auto" data-full-width-responsive="true"></ins>
-                <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
             @endif
         </div>
     @endforeach
