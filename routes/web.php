@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [App\Http\Controllers\subwayController::class, 'index'])->name('index');
 
+Route::get('/sitemap.xml', [App\Http\Controllers\subwayController::class, 'sitemap'])->name('sitemap');
+
 Route::get('/subway/{station_name}', [App\Http\Controllers\subwayController::class, 'subway'])->name('subway');
 
 Route::get('/subway_ajax/{station_name}', [App\Http\Controllers\subwayController::class, 'subway_ajax'])->name('subway_ajax');

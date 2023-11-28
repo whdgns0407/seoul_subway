@@ -6,6 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
+    <!-- 구글애드센스 -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6095871392041989"
+        crossorigin="anonymous"></script>
+
+        
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9ZYM97R27D"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-9ZYM97R27D');
+    </script>
+
+
 </head>
 
 <body>
@@ -26,7 +45,7 @@
         </table>
     </div>
 
-    @foreach ($station_sqls as $station_sql)
+    @foreach ($station_sqls as $index => $station_sql)
         <div style="display: flex; justify-content: center;">
             <table class="table table-striped table-hover table-bordered border-dark" style="width: 100%"
                 id="up_{{ $station_sql->line_id }}">
@@ -40,8 +59,6 @@
                             @else
                                 (외선)
                             @endif
-
-
                         </th>
 
                     </tr>
@@ -82,6 +99,16 @@
                 </tbody>
             </table>
         </div>
+        @if ($index == 0)
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6095871392041989"
+                crossorigin="anonymous"></script>
+            <!-- 지하철 상세정보 -->
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6095871392041989"
+                data-ad-slot="4284243830" data-ad-format="auto" data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        @endif
     @endforeach
 
     <script>
@@ -208,9 +235,9 @@
                                             }
                                             barvlDt_array[count] = data.realtimeArrivalList[i].barvlDt;
                                             btrainNo_array[count] = data.realtimeArrivalList[i]
-                                            .btrainNo;
+                                                .btrainNo;
                                             recptnDt_array[count] = data.realtimeArrivalList[i]
-                                            .recptnDt;
+                                                .recptnDt;
                                             count++;
                                         }
                                     } else {

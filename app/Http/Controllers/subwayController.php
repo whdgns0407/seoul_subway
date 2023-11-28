@@ -48,27 +48,6 @@ class subwayController extends Controller
         $linecodes_sql = Linecode::get();
         $station_sqls = Station::get();
 
-        /*
-        $staions_1 = Station::where('line_id', 1001);
-        $staions_2 = Station::where('line_id', 1002);
-        $staions_3 = Station::where('line_id', 1003);
-        $staions_4 = Station::where('line_id', 1004);
-        $staions_5 = Station::where('line_id', 1005);
-        $staions_6 = Station::where('line_id', 1006);
-        $staions_7 = Station::where('line_id', 1007);
-        $staions_8 = Station::where('line_id', 1008);
-        $staions_9 = Station::where('line_id', 1009);
-        $staions_gjl = Station::where('line_id', 1063);
-        $staions_arex = Station::where('line_id', 1063);
-        $staions_suin = Station::where('line_id', 1075);
-        $staions_sinbun = Station::where('line_id', 1077);
-        $staions_sinbun = Station::where('line_id', 1077);
-        $staions_gyeonggang = Station::where('line_id', 1081);
-        $staions_ui = Station::where('line_id', 1092);
-        $staions_seohae = Station::where('line_id', 1093);
-        */
-
-
         return view('welcome', ['linecodes_sql' => $linecodes_sql, 'station_sqls' => $station_sqls]);
     }
 
@@ -88,6 +67,14 @@ class subwayController extends Controller
     }
 
 
+    public function sitemap(Request $request)
+    {
+        $station_sqls = Station::get();
+
+        return response()
+        ->view('sitemap', ['station_sqls' => $station_sqls,])
+        ->header('Content-Type', 'text/xml');
+    }
 
 
     public function subway_ajax(Request $request, $station_name)
