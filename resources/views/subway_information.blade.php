@@ -195,6 +195,7 @@
                             barvlDt = parseInt(data.realtimeArrivalList[i].barvlDt);
 
                             if (barvlDt != 0) {
+                                /*
                                 if (barvlDt < 180) {
                                     if (count > 0) {
                                         index = btrainNo_array.indexOf(data.realtimeArrivalList[i]
@@ -238,9 +239,7 @@
                                         count++;
                                     }
                                 }
-
-
-
+                                */
                                 // 최신 지하철 시간
                                 var givenDate = new Date(data.realtimeArrivalList[i].recptnDt);
 
