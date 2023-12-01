@@ -22,6 +22,7 @@
         gtag('config', 'G-9ZYM97R27D');
     </script>
 
+    <title>{{ $station_name }}역 - 실시간 초단위 도착정보</title>
 
 </head>
 
