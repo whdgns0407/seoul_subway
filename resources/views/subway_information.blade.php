@@ -22,7 +22,7 @@
         gtag('config', 'G-9ZYM97R27D');
     </script>
 
-    <title>{{ $station_name }}역 - 실시간 초단위 도착정보</title>
+    <title>서울지하철 초단위 도착정보< - {{ $station_name }}역</title>
 
 </head>
 
@@ -60,10 +60,9 @@
                         </th>
                     </tr>
                     <tr>
-                        <th scope="col" style="text-align:center; vertical-align:middle; width:30%;">행선지</th>
-                        <th scope="col" style="text-align:center; vertical-align:middle; width:20%;">도착예정</th>
-                        <th scope="col" style="text-align:center; vertical-align:middle; width:30%;">메시지</th>
-                        <th scope="col" style="text-align:center; vertical-align:middle; width:20%;">현재위치</th>
+                        <th scope="col" style="text-align:center; vertical-align:middle; width:35%;">행선지</th>
+                        <th scope="col" style="text-align:center; vertical-align:middle; width:40%;">도착정보</th>
+                        <th scope="col" style="text-align:center; vertical-align:middle; width:25%;">현재위치</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -87,10 +86,9 @@
                         </th>
                     </tr>
                     <tr>
-                        <th scope="col" style="text-align:center; vertical-align:middle; width:30%;">행선지</th>
-                        <th scope="col" style="text-align:center; vertical-align:middle; width:20%;">도착예정</th>
-                        <th scope="col" style="text-align:center; vertical-align:middle; width:30%;">메시지</th>
-                        <th scope="col" style="text-align:center; vertical-align:middle; width:20%;">현재위치</th>
+                        <th scope="col" style="text-align:center; vertical-align:middle; width:35%;">행선지</th>
+                        <th scope="col" style="text-align:center; vertical-align:middle; width:40%;">도착정보</th>
+                        <th scope="col" style="text-align:center; vertical-align:middle; width:25%;">현재위치</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -102,7 +100,7 @@
     <div style="display: flex; justify-content: center;">
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6095871392041989"
             crossorigin="anonymous"></script>
-        
+
         <ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px"
             data-ad-client="ca-pub-6095871392041989" data-ad-slot="4284243830"></ins>
         <script>
@@ -172,6 +170,7 @@
                             $('#down_{{ $station_sql->line_id }} tbody').empty();
                         @endforeach
 
+
                         currentdate = new Date();
 
                         var hours = currentdate.getHours();
@@ -185,6 +184,8 @@
                         $("#current_time").text(hours + "시 " + minutes + "분 " + seconds + "초")
 
                         for (i = 0; i < data.realtimeArrivalList.length; i++) {
+
+
                             if (data.realtimeArrivalList[i].updnLine == "상행") {
                                 direction = "up";
                             } else if (data.realtimeArrivalList[i].updnLine == "외선") {
@@ -192,83 +193,84 @@
                             } else {
                                 direction = "down";
                             }
-
+                            /*
                             barvlDt = parseInt(data.realtimeArrivalList[i].barvlDt);
 
                             if (barvlDt != 0) {
-                                /*
-                                if (barvlDt < 180) {
-                                    if (count > 0) {
-                                        index = btrainNo_array.indexOf(data.realtimeArrivalList[i]
-                                            .btrainNo);
+                            */
+                            /*
+                            if (barvlDt < 180) {
+                                if (count > 0) {
+                                    index = btrainNo_array.indexOf(data.realtimeArrivalList[i]
+                                        .btrainNo);
 
-                                        if (index !== -1) {
-                                            if (data.realtimeArrivalList[i].barvlDt == barvlDt_array[
-                                                    index]) {
-                                                data.realtimeArrivalList[i].recptnDt = recptnDt_array[
-                                                    index];
-                                            } else {
-                                                console.log(data.realtimeArrivalList[i].trainLineNm);
-                                                console.log("기존값 : " + barvlDt_array[index]);
-                                                console.log("변경값 : " + data.realtimeArrivalList[i]
-                                                    .barvlDt);
-
-                                                barvlDt_array[index] = data.realtimeArrivalList[i]
-                                                    .barvlDt;
-                                                recptnDt_array[index] = data.realtimeArrivalList[i]
-                                                    .recptnDt;
-
-                                            }
+                                    if (index !== -1) {
+                                        if (data.realtimeArrivalList[i].barvlDt == barvlDt_array[
+                                                index]) {
+                                            data.realtimeArrivalList[i].recptnDt = recptnDt_array[
+                                                index];
                                         } else {
-                                            if (count > 200) {
-                                                barvlDt_array = [];
-                                                btrainNo_array = [];
-                                                recptnDt_array = [];
-                                                count = 0
-                                            }
-                                            barvlDt_array[count] = data.realtimeArrivalList[i].barvlDt;
-                                            btrainNo_array[count] = data.realtimeArrivalList[i]
-                                                .btrainNo;
-                                            recptnDt_array[count] = data.realtimeArrivalList[i]
+                                            console.log(data.realtimeArrivalList[i].trainLineNm);
+                                            console.log("기존값 : " + barvlDt_array[index]);
+                                            console.log("변경값 : " + data.realtimeArrivalList[i]
+                                                .barvlDt);
+
+                                            barvlDt_array[index] = data.realtimeArrivalList[i]
+                                                .barvlDt;
+                                            recptnDt_array[index] = data.realtimeArrivalList[i]
                                                 .recptnDt;
-                                            count++;
+
                                         }
                                     } else {
+                                        if (count > 200) {
+                                            barvlDt_array = [];
+                                            btrainNo_array = [];
+                                            recptnDt_array = [];
+                                            count = 0
+                                        }
                                         barvlDt_array[count] = data.realtimeArrivalList[i].barvlDt;
-                                        btrainNo_array[count] = data.realtimeArrivalList[i].btrainNo;
-                                        recptnDt_array[count] = data.realtimeArrivalList[i].recptnDt;
+                                        btrainNo_array[count] = data.realtimeArrivalList[i]
+                                            .btrainNo;
+                                        recptnDt_array[count] = data.realtimeArrivalList[i]
+                                            .recptnDt;
                                         count++;
                                     }
+                                } else {
+                                    barvlDt_array[count] = data.realtimeArrivalList[i].barvlDt;
+                                    btrainNo_array[count] = data.realtimeArrivalList[i].btrainNo;
+                                    recptnDt_array[count] = data.realtimeArrivalList[i].recptnDt;
+                                    count++;
+                                }
+                            }
+                            */
+                            // 최신 지하철 시간
+                            /*
+                                    var givenDate = new Date(data.realtimeArrivalList[i].recptnDt);
+
+                                    // 시간 더하기
+                                    givenDate.setSeconds(givenDate.getSeconds() + barvlDt);
+
+                                    remain_seconds = Math.floor((givenDate - currentdate) / 1000)-10;
+
+                                    if (remain_seconds <= 20) {
+                                        barvl_message = "도착";
+                                    } else if (remain_seconds <= 45) {
+                                        barvl_message = "진입중";
+                                    } else if (remain_seconds <= 60) {
+                                        barvl_message = "곧도착";
+                                    } else {
+                                        minutes = Math.floor(remain_seconds / 60);
+                                        seconds = remain_seconds % 60;
+                                        barvl_message = minutes + "분 " + seconds + "초";
+                                    }
+                                } else {
+                                    barvl_message = "미제공";
                                 }
                                 */
-                                // 최신 지하철 시간
-                                var givenDate = new Date(data.realtimeArrivalList[i].recptnDt);
-
-                                // 시간 더하기
-                                givenDate.setSeconds(givenDate.getSeconds() + barvlDt);
-
-                                remain_seconds = Math.floor((givenDate - currentdate) / 1000);
-
-                                if (remain_seconds <= 10) {
-                                    barvl_message = "도착";
-                                } else if (remain_seconds <= 25) {
-                                    barvl_message = "진입중";
-                                } else {
-                                    minutes = Math.floor(remain_seconds / 60);
-                                    seconds = remain_seconds % 60;
-                                    barvl_message = minutes + "분 " + seconds + "초";
-                                }
-                            } else {
-                                barvl_message = "미제공";
-                            }
-
                             var row = "<tr>" +
                                 "<td style='text-align: center; vertical-align:middle;'>" +
                                 data
                                 .realtimeArrivalList[i].trainLineNm +
-                                "</td>" +
-                                "<td style='text-align: center; vertical-align:middle;' class='arrive_time'>" +
-                                barvl_message +
                                 "</td>" +
                                 "<td style='text-align: center; vertical-align:middle;' class='" +
                                 direction + "_" + data.realtimeArrivalList[i].subwayId + "_arvlMsg2'>" +
@@ -282,13 +284,16 @@
                                 .append(row);
                         }
                         adjustFontSize();
-                    }
+                        subway_ajax();
+                    },
+                    error() {
+                        subway_ajax();
+                    },
                 });
             }
 
             subway_ajax();
 
-            var intervalId = setInterval(subway_ajax, 1000);
             /*
             // 1초마다 1초씩 시간 줄이기
             setInterval(function() {

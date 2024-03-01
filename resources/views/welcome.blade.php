@@ -22,7 +22,7 @@
 
         gtag('config', 'G-9ZYM97R27D');
     </script>
-
+    <title>서울지하철 도착 정보시스템</title>
 </head>
 
 <body>
@@ -31,7 +31,7 @@
             <thead>
                 <tr>
                     <th scope="col" colspan="3" style="text-align: center; vertical-align:middle; width:60%;">
-                        서울지하철 초단위 도착 정보시스템
+                        서울지하철 도착 정보제공시스템
                     </th>
                 </tr>
             </thead>

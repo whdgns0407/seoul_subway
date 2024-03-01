@@ -81,7 +81,6 @@ class subwayController extends Controller
     {
         $subway_api_key = env('subway_api_key');
 
-
         $url = "http://swopenapi.seoul.go.kr/api/subway/" . $subway_api_key . "/json/realtimeStationArrival/0/30/" . $station_name;
 
         $subway_json = Http::withHeaders([
