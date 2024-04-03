@@ -173,7 +173,7 @@
                                 $('#down_{{ $station_sql->line_id }} tbody').empty();
                             @endforeach
 
-                      
+              
                             subway_ajax();
 
                             currentdate = new Date();
@@ -291,6 +291,8 @@
                                     .append(row);
                             }
 
+
+                            adjustFontSize();
                         },
                         error() {
                             subway_ajax();
