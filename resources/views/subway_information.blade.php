@@ -168,129 +168,132 @@
                         type: 'GET',
                         dataType: 'json',
                         success: function(data) {
-                            @foreach ($station_sqls as $station_sql)
-                                $('#up_{{ $station_sql->line_id }} tbody').empty();
-                                $('#down_{{ $station_sql->line_id }} tbody').empty();
-                            @endforeach
-
-              
-                    
-
-                            currentdate = new Date();
-
-                            var hours = currentdate.getHours();
-                            var minutes = currentdate.getMinutes();
-                            var seconds = currentdate.getSeconds();
-
-                            var hours = (hours < 10) ? "0" + hours : hours;
-                            var minutes = (minutes < 10) ? "0" + minutes : minutes;
-                            var seconds = (seconds < 10) ? "0" + seconds : seconds;
-
-                            $("#current_time").text(hours + "시 " + minutes + "분 " + seconds + "초")
-
-                            for (i = 0; i < data.realtimeArrivalList.length; i++) {
+                            if (!data.status) {
+                                @foreach ($station_sqls as $station_sql)
+                                    $('#up_{{ $station_sql->line_id }} tbody').empty();
+                                    $('#down_{{ $station_sql->line_id }} tbody').empty();
+                                @endforeach
 
 
-                                if (data.realtimeArrivalList[i].updnLine == "상행") {
-                                    direction = "up";
-                                } else if (data.realtimeArrivalList[i].updnLine == "외선") {
-                                    direction = "up";
-                                } else {
-                                    direction = "down";
-                                }
-                                /*
-                                barvlDt = parseInt(data.realtimeArrivalList[i].barvlDt);
 
-                                if (barvlDt != 0) {
-                                */
-                                /*
-                                if (barvlDt < 180) {
-                                    if (count > 0) {
-                                        index = btrainNo_array.indexOf(data.realtimeArrivalList[i]
-                                            .btrainNo);
 
-                                        if (index !== -1) {
-                                            if (data.realtimeArrivalList[i].barvlDt == barvlDt_array[
-                                                    index]) {
-                                                data.realtimeArrivalList[i].recptnDt = recptnDt_array[
-                                                    index];
+                                currentdate = new Date();
+
+                                var hours = currentdate.getHours();
+                                var minutes = currentdate.getMinutes();
+                                var seconds = currentdate.getSeconds();
+
+                                var hours = (hours < 10) ? "0" + hours : hours;
+                                var minutes = (minutes < 10) ? "0" + minutes : minutes;
+                                var seconds = (seconds < 10) ? "0" + seconds : seconds;
+
+                                $("#current_time").text(hours + "시 " + minutes + "분 " + seconds + "초")
+
+
+                                for (i = 0; i < data.realtimeArrivalList.length; i++) {
+
+
+                                    if (data.realtimeArrivalList[i].updnLine == "상행") {
+                                        direction = "up";
+                                    } else if (data.realtimeArrivalList[i].updnLine == "외선") {
+                                        direction = "up";
+                                    } else {
+                                        direction = "down";
+                                    }
+                                    /*
+                                    barvlDt = parseInt(data.realtimeArrivalList[i].barvlDt);
+
+                                    if (barvlDt != 0) {
+                                    */
+                                    /*
+                                    if (barvlDt < 180) {
+                                        if (count > 0) {
+                                            index = btrainNo_array.indexOf(data.realtimeArrivalList[i]
+                                                .btrainNo);
+
+                                            if (index !== -1) {
+                                                if (data.realtimeArrivalList[i].barvlDt == barvlDt_array[
+                                                        index]) {
+                                                    data.realtimeArrivalList[i].recptnDt = recptnDt_array[
+                                                        index];
+                                                } else {
+                                                    console.log(data.realtimeArrivalList[i].trainLineNm);
+                                                    console.log("기존값 : " + barvlDt_array[index]);
+                                                    console.log("변경값 : " + data.realtimeArrivalList[i]
+                                                        .barvlDt);
+
+                                                    barvlDt_array[index] = data.realtimeArrivalList[i]
+                                                        .barvlDt;
+                                                    recptnDt_array[index] = data.realtimeArrivalList[i]
+                                                        .recptnDt;
+
+                                                }
                                             } else {
-                                                console.log(data.realtimeArrivalList[i].trainLineNm);
-                                                console.log("기존값 : " + barvlDt_array[index]);
-                                                console.log("변경값 : " + data.realtimeArrivalList[i]
-                                                    .barvlDt);
-
-                                                barvlDt_array[index] = data.realtimeArrivalList[i]
-                                                    .barvlDt;
-                                                recptnDt_array[index] = data.realtimeArrivalList[i]
+                                                if (count > 200) {
+                                                    barvlDt_array = [];
+                                                    btrainNo_array = [];
+                                                    recptnDt_array = [];
+                                                    count = 0
+                                                }
+                                                barvlDt_array[count] = data.realtimeArrivalList[i].barvlDt;
+                                                btrainNo_array[count] = data.realtimeArrivalList[i]
+                                                    .btrainNo;
+                                                recptnDt_array[count] = data.realtimeArrivalList[i]
                                                     .recptnDt;
-
+                                                count++;
                                             }
                                         } else {
-                                            if (count > 200) {
-                                                barvlDt_array = [];
-                                                btrainNo_array = [];
-                                                recptnDt_array = [];
-                                                count = 0
-                                            }
                                             barvlDt_array[count] = data.realtimeArrivalList[i].barvlDt;
-                                            btrainNo_array[count] = data.realtimeArrivalList[i]
-                                                .btrainNo;
-                                            recptnDt_array[count] = data.realtimeArrivalList[i]
-                                                .recptnDt;
+                                            btrainNo_array[count] = data.realtimeArrivalList[i].btrainNo;
+                                            recptnDt_array[count] = data.realtimeArrivalList[i].recptnDt;
                                             count++;
                                         }
-                                    } else {
-                                        barvlDt_array[count] = data.realtimeArrivalList[i].barvlDt;
-                                        btrainNo_array[count] = data.realtimeArrivalList[i].btrainNo;
-                                        recptnDt_array[count] = data.realtimeArrivalList[i].recptnDt;
-                                        count++;
-                                    }
-                                }
-                                */
-                                // 최신 지하철 시간
-                                /*
-                                        var givenDate = new Date(data.realtimeArrivalList[i].recptnDt);
-
-                                        // 시간 더하기
-                                        givenDate.setSeconds(givenDate.getSeconds() + barvlDt);
-
-                                        remain_seconds = Math.floor((givenDate - currentdate) / 1000)-10;
-
-                                        if (remain_seconds <= 20) {
-                                            barvl_message = "도착";
-                                        } else if (remain_seconds <= 45) {
-                                            barvl_message = "진입중";
-                                        } else if (remain_seconds <= 60) {
-                                            barvl_message = "곧도착";
-                                        } else {
-                                            minutes = Math.floor(remain_seconds / 60);
-                                            seconds = remain_seconds % 60;
-                                            barvl_message = minutes + "분 " + seconds + "초";
-                                        }
-                                    } else {
-                                        barvl_message = "미제공";
                                     }
                                     */
-                                var row = "<tr>" +
-                                    "<td style='text-align: center; vertical-align:middle;'>" +
-                                    data
-                                    .realtimeArrivalList[i].trainLineNm +
-                                    "</td>" +
-                                    "<td style='text-align: center; vertical-align:middle;' class='" +
-                                    direction + "_" + data.realtimeArrivalList[i].subwayId +
-                                    "_arvlMsg2'>" +
-                                    data
-                                    .realtimeArrivalList[i].arvlMsg2 +
-                                    "</td>" +
-                                    "<td style='text-align: center; vertical-align:middle;'>" + data
-                                    .realtimeArrivalList[i].arvlMsg3 + "</td>";
+                                    // 최신 지하철 시간
+                                    /*
+                                            var givenDate = new Date(data.realtimeArrivalList[i].recptnDt);
 
-                                $("#" + direction + "_" + data.realtimeArrivalList[i].subwayId +
-                                        " tbody")
-                                    .append(row);
+                                            // 시간 더하기
+                                            givenDate.setSeconds(givenDate.getSeconds() + barvlDt);
+
+                                            remain_seconds = Math.floor((givenDate - currentdate) / 1000)-10;
+
+                                            if (remain_seconds <= 20) {
+                                                barvl_message = "도착";
+                                            } else if (remain_seconds <= 45) {
+                                                barvl_message = "진입중";
+                                            } else if (remain_seconds <= 60) {
+                                                barvl_message = "곧도착";
+                                            } else {
+                                                minutes = Math.floor(remain_seconds / 60);
+                                                seconds = remain_seconds % 60;
+                                                barvl_message = minutes + "분 " + seconds + "초";
+                                            }
+                                        } else {
+                                            barvl_message = "미제공";
+                                        }
+                                        */
+                                    var row = "<tr>" +
+                                        "<td style='text-align: center; vertical-align:middle;'>" +
+                                        data
+                                        .realtimeArrivalList[i].trainLineNm +
+                                        "</td>" +
+                                        "<td style='text-align: center; vertical-align:middle;' class='" +
+                                        direction + "_" + data.realtimeArrivalList[i].subwayId +
+                                        "_arvlMsg2'>" +
+                                        data
+                                        .realtimeArrivalList[i].arvlMsg2 +
+                                        "</td>" +
+                                        "<td style='text-align: center; vertical-align:middle;'>" +
+                                        data
+                                        .realtimeArrivalList[i].arvlMsg3 + "</td>";
+
+                                    $("#" + direction + "_" + data.realtimeArrivalList[i].subwayId +
+                                            " tbody")
+                                        .append(row);
+                                }
                             }
-
                             subway_ajax();
                             adjustFontSize();
                         },
