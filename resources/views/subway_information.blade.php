@@ -174,7 +174,7 @@
                             @endforeach
 
               
-                            subway_ajax();
+                    
 
                             currentdate = new Date();
 
@@ -291,7 +291,7 @@
                                     .append(row);
                             }
 
-
+                            subway_ajax();
                             adjustFontSize();
                         },
                         error() {
