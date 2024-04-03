@@ -173,7 +173,7 @@
                                 $('#down_{{ $station_sql->line_id }} tbody').empty();
                             @endforeach
 
-                            adjustFontSize();
+                      
                             subway_ajax();
 
                             currentdate = new Date();
